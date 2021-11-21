@@ -37,7 +37,6 @@ import Card from "../components/Card.vue"
 import ToutalNumberOfCards from "../components/ToutalNumberOfCards.vue"
 export default {
   components:{Filterr,Card,ToutalNumberOfCards},
-export default {
   data() {
     return {
       days: ["SAT", "SUN", "MON", "TUS", "WED", "THU", "FRI"],
