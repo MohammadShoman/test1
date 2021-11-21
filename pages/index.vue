@@ -1,7 +1,13 @@
 <template>
   <div>
     <h2>Calender</h2>
-    <table width="100%">
+
+    <h2>A basic HTML table</h2>
+<Filterr/>
+<ToutalNumberOfCards :numberOfCards="15"/>
+<Card color="pink"/>
+    <table style="width: 100%">
+
       <tr>
         <th></th>
         <th :key="day" v-for="day in days">
@@ -26,6 +32,11 @@
 </template>
 
 <script>
+import Filterr from "../components/Filterr"
+import Card from "../components/Card.vue"
+import ToutalNumberOfCards from "../components/ToutalNumberOfCards.vue"
+export default {
+  components:{Filterr,Card,ToutalNumberOfCards},
 export default {
   data() {
     return {
@@ -44,6 +55,8 @@ export default {
   methods: {
     async getData() {},
   },
+
+  
 };
 </script>
 
