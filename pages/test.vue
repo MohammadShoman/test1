@@ -1,38 +1,38 @@
 <template>
   <div>
-    <input type="date" name="week" required v-model.lazy="startDate" />
-    <input type="date" name="week" required v-model.lazy="endDate" />
+    <input type="date" v-model="startDate" />
+    <input type="date" v-model="endDate" />
+    <input type="text" @keypress.enter="$fetch" v-model="num" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
 export default {
   data() {
-    {
-      return {
-        datas: [],
-        startDate: "",
-        endDate: "",
-      };
-    }
+    return {
+      startDate: "",
+      endDate: "",
+      num: "",
+    };
   },
   async fetch() {
-  this.getAppointment();
+    this.getData();
   },
-
+  updated() {
+    console.log(this.datas);
+  },
+  created() {},
   methods: {
-    async getData() {},
-    async getAppointment() {
-      const data = axios.get(
-        `http://localhost:5000/appointments/${this.startDate}/${this.endDate}`
-      );
+    async getData() {
+      console.log(this.num);
+      const data = axios.get(`http://localhost:5000/appointments/${this.num}`);
       const result = await data;
       this.datas = result;
-      console.log(result);
+      console.log("result", this.datas);
     },
   },
+  computed: {},
 };
 </script>
 
