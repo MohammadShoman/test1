@@ -139,7 +139,7 @@
               {{ startDate.toString().split(" ").slice(1, 4).join(" ") }}
               -
               {{
-                addDays(startDate, 7)
+                addDays(startDate, 6)
                   .toString()
                   .split(" ")
                   .slice(1, 4)
