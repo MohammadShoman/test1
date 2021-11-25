@@ -13,7 +13,7 @@
           <div class="filter">
             <label class="container"
               >Doctor
-              <input type="radio" checked="checked" name="radio" />
+              <input type="radio" checked="checked" name="radio" v-m />
               <span class="checkmark"></span>
             </label>
             <label class="container"
@@ -56,23 +56,30 @@
             <!--  days -->
 
             <tr class="weekdays">
-              <th>&nbsp;</th>
-              <th :key="index" v-for="(day, index) in days" scope="col">
+              <th scope="col">&nbsp;</th>
+              <th
+                :id="(index + 1).toString()"
+                :key="index"
+                v-for="(day, index) in days"
+                scope="col"
+                ref="tableHeader"
+              >
                 {{ day }}
               </th>
             </tr>
+            <!--  row -->
 
-            <tr :key="app.id" class="days" v-for="app in list">
-              <th>&nbsp;{{ app.id }}</th>
+            <tr class="days" :key="index1" v-for="(items, index1) in list">
+              <th>{{ items.doctor_name }}</th>
 
-              <td :key="item" v-for="item in 7" class="day">
-                <div v-if="day == app.day" class="event">
-                  <div class="event-desc">
-                    Career development @ Community College room #402
-                  </div>
-
-                  <div class="event-time">2:00pm to 5:00pm</div>
-                </div>
+              <td
+                @click="onClick(index2)"
+                :key="index2"
+                v-for="(block, index2) in 7"
+                class="day"
+                :load="getValue"
+              >
+                <!--  {{ normalizedList(`${index2}`) }}-->
               </td>
             </tr>
           </table>
@@ -92,16 +99,42 @@ export default {
     return {
       newValue: "",
       list: [],
-      days: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"],
+      days: [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
     };
+  },
+  mounted() {
+    this.asa();
   },
   methods: {
     async getData() {
       const result = await axios.get(
-        `https://619355dcd3ae6d0017da84c7.mockapi.io/doctors`
+        `hhttp://localhost:5000/weeklyAppointments/doctors/2021-11-20`
       );
-      this.list = result.data;
-      console.log(result.data);
+      this.list = result.data.doctors;
+    },
+    onClick(index) {
+      //console.log(index);
+      return index, this.$refs.tableHeader[1].innerHTML;
+      //   console.log(this.$refs.header[1].innerText);
+    },
+  },
+  watch: {},
+  computed: {
+    normalizedList() {
+      return (message1) => {
+        let index = Number(message1);
+        return index;
+        //return this.$refs.header[1].innerHTML;
+        // console.log(this.$refs.header[message].innerHTML);
+      };
     },
   },
 };
