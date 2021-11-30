@@ -28,20 +28,6 @@
         <table id="calendar">
           <!--  days -->
           <DateHeader :startDate="startDate" />
-          <tr class="weekdays">
-            <th>&nbsp;</th>
-            <th ref="header" :key="day" v-for="(day, index) in 7" scope="col">
-              {{ addDays(startDate, index).split(" ")[0] }}
-              <br />
-              {{ addDays(startDate, index).split(" ")[1] }}
-
-              {{ addDays(startDate, index).split(" ")[2] }}
-            </th>
-
-            <th scope="col">
-              <div class="arrows2"></div>
-            </th>
-          </tr>
 
           <!--  row -->
           <tr :key="index" v-for="(items, index) in list">
