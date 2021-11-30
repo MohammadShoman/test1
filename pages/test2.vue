@@ -1,111 +1,14 @@
 <template>
   <div>
-    <div class="header">
-      <div class="header-items">
-        <div class="icon-bar">
-          <div class="dropdown">
-            <div class="dropdown-content">
-              <a href="#">item 1</a>
-              <a href="#">item 2</a>
-              <a href="#">item 3</a>
-            </div>
-            <a href="#"
-              ><i class="icon"></i
-              ><svg
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-                aria-hidden="true"
-                role="img"
-                width="30"
-                height="30"
-                preserveAspectRatio="xMidYMid meet"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 19.2c-2.5 0-4.71-1.28-6-3.2c.03-2 4-3.1 6-3.1s5.97 1.1 6 3.1a7.232 7.232 0 0 1-6 3.2M12 5a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3m0-3A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10c0-5.53-4.5-10-10-10z"
-                  fill="#0b5efc"
-                /></svg
-            ></a>
-          </div>
-
-          <h4 class="username">Username</h4>
-
-          <a href="#"
-            ><i class="icon"></i
-            ><svg
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              aria-hidden="true"
-              role="img"
-              width="30"
-              height="30"
-              preserveAspectRatio="xMidYMid meet"
-              viewBox="0 0 28 28"
-            >
-              <g fill="none">
-                <path
-                  d="M14 3a8.501 8.501 0 0 1 8.497 8.246l.004.255v4.612l1.414 3.644c.038.098.064.201.077.305l.01.158a1.28 1.28 0 0 1-1.15 1.273l-.13.007l-5.22.001a3.502 3.502 0 0 1-6.998.192l-.006-.194l-5.223.001a1.28 1.28 0 0 1-1.235-1.62l.042-.124l1.416-3.644v-4.61A8.501 8.501 0 0 1 14 3zm1.996 18.65L16 21.5l-4.002.002a2.001 2.001 0 0 0 3.998.15zM14 4.5a7.001 7.001 0 0 0-6.997 6.76l-.004.241v4.752a.75.75 0 0 1-.023.184l-.028.088L5.596 20H22.4l-1.348-3.474a.748.748 0 0 1-.045-.18L21 16.254v-4.752A7.001 7.001 0 0 0 14 4.5z"
-                  fill="#0b5efc"
-                />
-              </g></svg
-          ></a>
-        </div>
-      </div>
-    </div>
-
+    <Header />
     <div class="calendar-wrapper">
       <div id="calendar-container">
         <div id="calendar1" class="first-container" styles>
           <div class="calendar-header">
             <div class="left"></div>
-            <div class="filter">
-              <label class="container"
-                >Doctor
-                <input
-                  @change="filterValue('doctors')"
-                  type="radio"
-                  checked="checked"
-                  name="radio"
-                />
-                <span class="checkmark"></span>
-              </label>
-              <label class="container"
-                >Room
-                <input
-                  @change="filterValue('rooms')"
-                  type="radio"
-                  name="radio"
-                />
-                <span class="checkmark"></span>
-              </label>
-              <label class="container"
-                >Procedure
-                <input
-                  @change="filterValue('procedures')"
-                  type="radio"
-                  name="radio"
-                />
-                <span class="checkmark"></span>
-              </label>
-              <label change="filterValue('assistants')" class="container"
-                >Assistant
-                <input
-                  @change="filterValue('assistants')"
-                  type="radio"
-                  name="radio"
-                />
-                <span class="checkmark"></span>
-              </label>
-            </div>
+            <FiltterType @fillter-value="filterValue" />
             <div class="right">
-              <div class="button-group">
-                <div class="buttons">
-                  <button class="button1">Weekly</button>
-                  <button class="button2">Daily</button>
-                  <button class="button3">Time Interval</button>
-                  <button class="button4">Monthly</button>
-                </div>
-              </div>
+              <RightSide />
             </div>
           </div>
         </div>
@@ -113,69 +16,21 @@
       <div class="calendar-view">
         <div class="middle">
           <div class="son">
-            <div @click="addValue(-7)" class="arrow1">
-              <a
-                ><i class="arrow-icon"></i
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true"
-                  role="img"
-                  width="35"
-                  height="35"
-                  preserveAspectRatio="xMidYMid meet"
-                  viewBox="0 0 24 24"
-                >
-                  <g transform="rotate(180 12 12)">
-                    <path
-                      fill="#6f9df2"
-                      d="M10.46 18a2.23 2.23 0 0 1-.91-.2a1.76 1.76 0 0 1-1.05-1.59V7.79A1.76 1.76 0 0 1 9.55 6.2a2.1 2.1 0 0 1 2.21.26l5.1 4.21a1.7 1.7 0 0 1 0 2.66l-5.1 4.21a2.06 2.06 0 0 1-1.3.46z"
-                    />
-                  </g></svg
-              ></a>
-            </div>
+            <IconsArrowLeft @decrease-to-date="addValue(-7)" />
 
             <h2 class="week-from-to">
-              {{ startDate.toString().split(" ").slice(1, 4).join(" ") }}
-              -
-              {{
-                addDays(startDate, 6)
-                  .toString()
-                  .split(" ")
-                  .slice(1, 4)
-                  .join(" ")
-              }}
+              {{ weekFromTo }}
             </h2>
-
-            <div @click="addValue(7)" class="arrow2">
-              <a
-                ><i class="arrow-icon-2"></i
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  aria-hidden="true"
-                  role="img"
-                  width="35"
-                  height="35"
-                  preserveAspectRatio="xMidYMid meet"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="#6f9df2"
-                    d="M10.46 18a2.23 2.23 0 0 1-.91-.2a1.76 1.76 0 0 1-1.05-1.59V7.79A1.76 1.76 0 0 1 9.55 6.2a2.1 2.1 0 0 1 2.21.26l5.1 4.21a1.7 1.7 0 0 1 0 2.66l-5.1 4.21a2.06 2.06 0 0 1-1.3.46z"
-                  /></svg
-              ></a>
-            </div>
+            <IconsArrowRight @add-to-date="addValue(7)" />
           </div>
         </div>
 
         <table id="calendar">
           <!--  days -->
+          <DateHeader :startDate="startDate" />
           <tr class="weekdays">
             <th>&nbsp;</th>
             <th ref="header" :key="day" v-for="(day, index) in 7" scope="col">
-              <br />
-
               {{ addDays(startDate, index).split(" ")[0] }}
               <br />
               {{ addDays(startDate, index).split(" ")[1] }}
@@ -188,51 +43,28 @@
             </th>
           </tr>
 
-          <!-- event -->
-
           <!--  row -->
           <tr :key="index" v-for="(items, index) in list">
             <th>&nbsp; {{ items.name }}</th>
 
-            <td
-              :load="console(items.weekDays[index].appointments.length)"
-              :key="index"
-              v-for="(count, index) in 7"
-              class="day"
-            >
-              <div v-if="items.weekDays[index].appointments.length == 1">
-                <div class="event2">
-                  <div class="event-desc">
-                    {{
-                      items.weekDays[index].appointments[0]
-                        .appointment_patient_id
-                    }}
-                  </div>
-                  <div class="event-time">
-                    {{
-                      items.weekDays[index].appointments[0]
-                        .appointment_start_time
-                    }}
-                    to
-                    {{
-                      items.weekDays[index].appointments[0].appointment_end_time
-                    }}
-                  </div>
-                </div>
-              </div>
+            <td :key="index" v-for="(count, index) in 7" class="day">
+              <!-- event -->
+              <CardEvent
+                v-if="items.weekDays[index].appointments.length == 1"
+                :userName="
+                  items.weekDays[index].appointments[0].appointment_patient_id
+                "
+                :appointmentTimeFrom="
+                  items.weekDays[index].appointments[0].appointment_start_time
+                "
+                :appointmentTimeTo="
+                  items.weekDays[index].appointments[0].appointment_end_time
+                "
+              />
+
               <div v-else-if="items.weekDays[index].appointments.length > 1">
                 {{ items.weekDays[index].appointments.length }}
               </div>
-
-              <!-- {{
-                items.weekDays[index].appointments.length == 1
-                  ? "one"
-                  : items.weekDays[index].appointments.length > 1
-                  ? items.weekDays[index].appointments.length
-                  : "0"
-              }} -->
-              <!-- {{ normalizedList(`${items}`) }}
-              {{ property }} -->
             </td>
           </tr>
         </table>
@@ -244,51 +76,33 @@
 <script>
 import axios from "axios";
 import moment from "moment";
+
 export default {
   created() {
     this.getData();
   },
+
   methods: {
     filterValue(value) {
       this.filter = value;
       this.getData();
     },
-
-    console(value) {
-      console.log(value);
-    },
     addValue(value) {
       this.startDate = this.addDays(this.startDate, value);
       this.getData();
     },
-    getStratDate(date) {
+    getStratDate(date, day) {
       var curr = new Date(date); // get current date
-      while (curr.getDay() != 6) {
+      // if day === 0 = sunday
+      while (curr.getDay() != day) {
         curr.setDate(curr.getDate() - 1);
       }
-      console.log(curr);
       return curr;
-    },
-    weekFromTo() {
-      let from = this.startDate.toString().split(" ").slice(1, 4);
-      let to = this.addDays(this.startDate, 7)
-        .toString()
-        .split(" ")
-        .slice(1, 4);
-
-      return `${from}  - ${to}`;
     },
 
     addDays(date, num) {
       const newD = new Date(date);
       newD.setDate(newD.getDate() + num);
-      // const day = newD.toString().split(" ")[0];
-      // const month = newD.toString().split(" ")[1];
-      // const daydate = newD.toString().split(" ")[2];
-      // const fullDate = `${day}
-      // ${month}
-      //  ${daydate}  `;
-
       return newD.toString();
     },
 
@@ -302,59 +116,26 @@ export default {
       this.list = result.data.Users;
       console.log(this.list);
     },
-    // getWeekNumber(date) {
-    //   let currentdate = new Date(date);
-    //   let oneJan = new Date(currentdate.getFullYear(), 0, 1);
-    //   let numberOfDays = Math.floor(
-    //     (currentdate - oneJan) / (24 * 60 * 60 * 1000)
-    //   );
-    //   let result = Math.ceil((currentdate.getDay() + 1 + numberOfDays) / 7);
-    //   console.log(result);
-    //   return result;
-    // },
-    // onClick(index) {
-    //   //console.log(index);
-    //   //   return index, this.$refs.header[index].innerHTML;
-    //   console.log(this.$refs.header[index].innerHTML);
-    // },
   },
-  updated() {
-    // this.getData();
-  },
+
   data() {
-    var self = this;
     return {
       newValue: "",
       list: [],
       filter: "doctors",
-      // startDate: this.getStratDate(this.getWeekNumber(new Date()),2021),
-      //currentDate: new Date().getDate() - new Date().getDay() ,
-      //startDate: this.addDays(new Date(),-4),
-      startDate: this.getStratDate(new Date()),
+      startDate: this.getStratDate(new Date(), 6),
       isMounted: false,
     };
   },
-  mounted() {
-    this.isMounted = true;
-  },
   computed: {
-    normalizedList() {
-      return (message1) => {
-        if (!this.isMounted) {
-          return;
-        } else {
-          let index = Number(message1);
-          return this.$refs.header[index].innerHTML;
-        }
-      };
-    },
-    property() {
-      if (!this.isMounted) {
-        return;
-      } else {
-        this.$refs.header[3].innerHTML;
-      }
-      // this.$refs is available
+    weekFromTo() {
+      let from = this.startDate.toString().split(" ").slice(1, 4);
+      let to = this.addDays(this.startDate, 7)
+        .toString()
+        .split(" ")
+        .slice(1, 4);
+
+      return `${from}  - ${to}`;
     },
   },
 };
